@@ -2,43 +2,894 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Kay Games</title>
-    <link rel="stylesheet" href="css/style.css">
 
     <!-- App icons -->
-<link rel="icon" type="image/x-icon" href="AppFiles/Icons/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="AppFiles/Logos/AppIcon192px.png">
-<link rel="icon" type="image/png" sizes="512x512" href="AppFiles/Logos/AppIcon512px.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0d1210">
-<!-- End app icons -->
-    
+    <link rel="icon" type="image/x-icon" href="AppFiles/Icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="AppFiles/Logos/AppIcon192px.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="AppFiles/Logos/AppIcon512px.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#131313">
+    <!-- End app icons -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #131313;
+            --surface: #1a1a1a;
+            --surface-2: #222222;
+            --surface-3: #2a2a2a;
+            --line: #2c2c2c;
+            --line-strong: #404040;
+
+            --text: #ededed;
+            --text-dim: #a6a6a6;
+            --text-faint: #767676;
+
+            --orange: #ffa238;
+            --orange-dim: rgba(255, 162, 56, 0.14);
+            --blue: #6babff;
+            --blue-dim: rgba(107, 171, 255, 0.14);
+
+            --font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --font-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+            --font-new: 'CustomFont', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+            --radius-sm: 6px;
+            --radius: 10px;
+            --radius-lg: 14px;
+
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+
+            --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        * { margin: 0; }
+
+        html { -webkit-text-size-adjust: 100%; }
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('Fonts/TangoSans.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+        body {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            padding:
+                calc(var(--space-6) + env(safe-area-inset-top, 0px))
+                calc(var(--space-5) + env(safe-area-inset-right, 0px))
+                calc(var(--space-7) + env(safe-area-inset-bottom, 0px))
+                calc(var(--space-5) + env(safe-area-inset-left, 0px));
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: 1px;
+        }
+
+        body:has(dialog[open]) { overflow: hidden; }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            padding-bottom: var(--space-5);
+            margin-bottom: var(--space-5);
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            font-family: var(--font-new);
+            font-weight: 800;
+            font-size: clamp(2.4rem, 7vw, 4.25rem);
+            line-height: 0.95;
+            letter-spacing: 0.02em;
+            color: var(--text);
+        }
+
+        .header-count {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .header-count strong {
+            font-weight: 500;
+            color: var(--orange);
+        }
+
+        /* ---------- Toolbar ---------- */
+        .toolbar {
+            display: grid;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+
+        .toolbar-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            align-items: flex-end;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            min-width: 0;
+        }
+
+        .field > label {
+            font-family: var(--font-new);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .field-search { flex: 1 1 280px; }
+        .field-filter { flex: 1 1 150px; }
+        .field-sort   { flex: 0 1 200px; }
+
+        input[type="search"],
+        select {
+            width: 100%;
+            font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 0 var(--space-4);
+            height: 44px;
+            transition: border-color 0.15s var(--ease), background-color 0.15s var(--ease);
+        }
+
+        input[type="search"]::placeholder { color: var(--text-faint); }
+
+        input[type="search"]::-webkit-search-cancel-button { filter: invert(0.7); cursor: pointer; }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 36px;
+            cursor: pointer;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23a6a6a6' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+
+        select option { background: var(--surface-2); color: var(--text); }
+
+        input[type="search"]:hover,
+        select:hover { border-color: var(--line-strong); }
+
+        input[type="search"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px var(--blue-dim);
+        }
+
+        .field-filter.is-active select {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .toolbar-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-3);
+            min-height: 32px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .btn-clear {
+            font: inherit;
+            font-size: 0.8rem;
+            color: var(--blue);
+            background: none;
+            border: 0;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .btn-clear:hover { color: var(--text); }
+        .btn-clear[hidden] { display: none; }
+
+        /* ---------- Grid ---------- */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+            gap: var(--space-5);
+        }
+
+        .state-message {
+            grid-column: 1 / -1;
+            padding: var(--space-7) var(--space-4);
+            text-align: center;
+            color: var(--text-dim);
+            border: 1px dashed var(--line-strong);
+            border-radius: var(--radius-lg);
+        }
+
+        .state-message strong {
+            display: block;
+            font-family: var(--font-new);
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text);
+            margin-bottom: var(--space-2);
+        }
+
+        .state-message p { max-width: 52ch; margin: 0 auto; }
+
+        /* ---------- Card ---------- */
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+        }
+
+        .card:hover,
+        .card:focus-within {
+            border-color: var(--line-strong);
+            background: #1d1d1d;
+        }
+
+        .card-media {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: var(--surface-2);
+            overflow: hidden;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-fallback {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            font-family: var(--font-new);
+            font-weight: 800;
+            font-size: 4.5rem;
+            line-height: 1;
+            color: var(--orange);
+            background:
+                repeating-linear-gradient(135deg, transparent 0 14px, rgba(255, 255, 255, 0.025) 14px 15px),
+                var(--surface-2);
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: var(--space-3);
+            padding: var(--space-4) var(--space-4) var(--space-4);
+        }
+
+        .card-title {
+            font-family: var(--font-new);
+            font-weight: 700;
+            font-size: 1.35rem;
+            line-height: 1.15;
+            letter-spacing: 0.07em;
+        }
+
+        .card-title a {
+            color: var(--text);
+            text-decoration: none;
+            background-image: linear-gradient(var(--orange), var(--orange));
+            background-size: 0% 2px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            padding-bottom: 2px;
+            transition: background-size 0.25s var(--ease), color 0.2s var(--ease);
+        }
+
+        .card-title a:hover { color: var(--orange); background-size: 100% 2px; }
+
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-1) var(--space-4);
+            font-size: 0.82rem;
+            color: var(--text);
+        }
+
+        .facts span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .facts svg {
+            width: 14px;
+            height: 14px;
+            flex: none;
+            stroke: var(--text-faint);
+            fill: none;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            list-style: none;
+            padding: 0;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            line-height: 1;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line-strong);
+            color: var(--text-dim);
+        }
+
+        .tag.tag-type {
+            color: var(--blue);
+            background: var(--blue-dim);
+            border-color: transparent;
+        }
+
+        .card-desc {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-1);
+        }
+
+        .btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-new);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.0667em;
+            height: 42px;
+            padding: 0 var(--space-4);
+            border-radius: var(--radius);
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+        }
+
+        .btn:hover { border-color: var(--text-dim); background: var(--surface-3); }
+        .btn:active { transform: translateY(1px); }
+
+        .btn-primary {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #131313;
+        }
+
+        .btn-primary:hover { background: #ffb257; border-color: #ffb257; }
+
+        /* ---------- Rules dialog ---------- */
+        dialog {
+            width: min(720px, calc(100% - 32px));
+            max-height: min(85vh, 800px);
+            padding: 0;
+            margin: auto;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        dialog[open] {
+            display: flex;
+            flex-direction: column;
+            animation: dialog-in 0.22s var(--ease);
+        }
+
+        dialog::backdrop {
+            background: rgba(8, 8, 8, 0.78);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        @keyframes dialog-in {
+            from { opacity: 0; transform: translateY(12px) scale(0.985); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        .dialog-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-4) var(--space-4) var(--space-5);
+            border-bottom: 1px solid var(--line);
+            flex: none;
+        }
+
+        .dialog-title {
+            font-family: var(--font-new);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 0.07em;
+            line-height: 1.2;
+        }
+
+        .dialog-close {
+            flex: none;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+        }
+
+        .dialog-close:hover { background: var(--surface-3); color: var(--text); }
+
+        .dialog-close svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .dialog-body {
+            padding: var(--space-5);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            white-space: pre-line;
+            line-height: 1.8;
+            color: var(--text-dim);
+            max-width: 72ch;
+        }
+
+        .dialog-body::-webkit-scrollbar { width: 8px; }
+        .dialog-body::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+        .dialog-body::-webkit-scrollbar-track { background: transparent; }
+
+        /* ---------- Focus & motion ---------- */
+        :focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        input[type="search"]:focus-visible,
+        select:focus-visible { outline: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 640px) {
+            body {
+                padding-left: calc(var(--space-4) + env(safe-area-inset-left, 0px));
+                padding-right: calc(var(--space-4) + env(safe-area-inset-right, 0px));
+            }
+            .field-search,
+            .field-sort { flex: 1 1 100%; }
+            .field-filter { flex: 1 1 calc(50% - var(--space-3)); }
+            .games-grid { gap: var(--space-4); }
+            .dialog-head { padding-left: var(--space-4); }
+            .dialog-body { padding: var(--space-4); }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Kay Games</h1>
+            <p class="header-count" id="header-count" aria-hidden="true"></p>
         </header>
 
-        <div class="controls" id="filters-container">
-        </div>
+        <section class="toolbar" aria-label="Find a game">
+            <div class="toolbar-row">
+                <div class="field field-search">
+                    <label for="search-input">Search</label>
+                    <input type="search" id="search-input" placeholder="Search by name, type or description" autocomplete="off">
+                </div>
+                <div class="field field-sort">
+                    <label for="sort-by">Sort by</label>
+                    <select id="sort-by">
+                        <option value="name-asc">Name (A to Z)</option>
+                        <option value="name-desc">Name (Z to A)</option>
+                        <option value="rating-desc">Rating (highest first)</option>
+                        <option value="rating-asc">Rating (lowest first)</option>
+                        <option value="players-asc">Players (fewest first)</option>
+                        <option value="players-desc">Players (most first)</option>
+                    </select>
+                </div>
+            </div>
 
-        <div class="games-grid" id="games-container">
-            <div class="no-games">Loading games...</div>
-        </div>
+            <div class="toolbar-row" id="filters-container"></div>
+
+            <div class="toolbar-meta">
+                <span id="result-count" role="status" aria-live="polite"></span>
+                <button type="button" class="btn-clear" id="clear-filters" hidden>Clear search and filters</button>
+            </div>
+        </section>
+
+        <main class="games-grid" id="games-container">
+            <div class="state-message"><strong>Loading games</strong></div>
+        </main>
     </div>
 
-    <!-- Rules Modal -->
-    <div class="modal" id="rules-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <h2 class="modal-title" id="modal-title">Game Rules</h2>
-            <div class="modal-rules" id="modal-rules"></div>
+    <!-- Rules dialog -->
+    <dialog id="rules-modal" aria-labelledby="modal-title">
+        <div class="dialog-head">
+            <h2 class="dialog-title" id="modal-title">Rules</h2>
+            <button type="button" class="dialog-close" id="modal-close" aria-label="Close rules">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+            </button>
         </div>
-    </div>
+        <div class="dialog-body" id="modal-rules"></div>
+    </dialog>
 
-    <script src="js/app.js"></script>
+    <script>
+        // ---------- DOM ----------
+        const gamesContainer = document.getElementById('games-container');
+        const filtersContainer = document.getElementById('filters-container');
+        const searchInput = document.getElementById('search-input');
+        const sortSelect = document.getElementById('sort-by');
+        const clearButton = document.getElementById('clear-filters');
+        const resultCount = document.getElementById('result-count');
+        const headerCount = document.getElementById('header-count');
+        const rulesModal = document.getElementById('rules-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalRules = document.getElementById('modal-rules');
+        const modalClose = document.getElementById('modal-close');
+
+        // ---------- State ----------
+        let games = [];
+
+        // key: select id + state key, field: property on the game object
+        const filterDefs = [
+            { key: 'type',      field: 'type',        label: 'Type',       plural: 'types' },
+            { key: 'players',   field: 'playerCount', label: 'Players',    plural: 'player counts' },
+            { key: 'maturity',  field: 'maturity',    label: 'Maturity',   plural: 'maturities' },
+            { key: 'brainload', field: 'brainload',   label: 'Complexity', plural: 'complexity levels' }
+        ];
+        const filterState = Object.fromEntries(filterDefs.map(d => [d.key, 'all']));
+        const filterSelects = {};
+
+        // ---------- Helpers ----------
+        function el(tag, attrs = {}, ...children) {
+            const node = document.createElement(tag);
+            for (const [name, value] of Object.entries(attrs)) {
+                if (value == null || value === false) continue;
+                if (name === 'class') node.className = value;
+                else if (name === 'text') node.textContent = value;
+                else if (name.startsWith('on')) node.addEventListener(name.slice(2), value);
+                else node.setAttribute(name, value === true ? '' : value);
+            }
+            children.flat().forEach(child => {
+                if (child == null || child === false) return;
+                node.append(child.nodeType ? child : document.createTextNode(child));
+            });
+            return node;
+        }
+
+        function icon(pathData) {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 16 16');
+            svg.setAttribute('aria-hidden', 'true');
+            svg.innerHTML = pathData;
+            return svg;
+        }
+
+        const ICON_PLAYERS = '<circle cx="6" cy="5.5" r="2.5"/><path d="M1.5 13.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/><path d="M10.5 3.2a2.4 2.4 0 010 4.6M12 9.8c1.6.5 2.5 1.8 2.5 3.7"/>';
+        const ICON_TIME = '<circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/>';
+        const ICON_STAR = '<path d="M8 1.8l1.9 4 4.3.5-3.2 3 .9 4.3L8 11.4l-3.9 2.2.9-4.3-3.2-3 4.3-.5z"/>';
+
+        function showMessage(title, detail) {
+            gamesContainer.replaceChildren(
+                el('div', { class: 'state-message' },
+                    el('strong', { text: title }),
+                    detail ? el('p', { text: detail }) : null
+                )
+            );
+        }
+
+        // Extract the smallest number in a player count string, e.g. "2-6 players" -> 2
+        function getMinPlayers(playerCount) {
+            const match = String(playerCount ?? '').match(/\d+/);
+            return match ? parseInt(match[0], 10) : 0;
+        }
+
+        // Turn "8", 8, 8.5 or "8/10" into a number, or null if missing/invalid
+function parseRating(value) {
+    const n = parseFloat(String(value ?? '').replace(/\/\s*10\s*$/, ''));
+    return Number.isFinite(n) ? n : null;
+}
+
+function formatRating(rating) {
+    return `${Number.isInteger(rating) ? rating : rating.toFixed(1)}/10`;
+}
+
+// Unrated games always sort last, whichever direction is chosen
+function compareRating(a, b, direction) {
+    if (a.rating == null && b.rating == null) return 0;
+    if (a.rating == null) return 1;
+    if (b.rating == null) return -1;
+    return direction * (a.rating - b.rating);
+}
+
+        // ---------- Load data ----------
+        async function fetchGames() {
+            try {
+                const response = await fetch('Games.json', { cache: 'no-cache' });
+                if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+                const data = await response.json();
+                if (!Array.isArray(data['Game List'])) throw new Error('Missing "Game List" array');
+                processGameData(data['Game List']);
+            } catch (error) {
+                console.error('Error loading games:', error);
+                showMessage(
+                    "Couldn't load the games",
+                    'Check that Games.json sits next to this page, contains a "Game List" array, and is valid JSON. If you opened this file directly from disk, serve it over http instead.'
+                );
+            }
+        }
+
+        function processGameData(gameList) {
+            games = gameList.map((game, index) => ({
+                id: index + 1,
+                title: game.Name ?? 'Untitled game',
+                description: game.Description ?? '',
+                rules: game.Rules ?? '',
+                type: game['Game-Type'] ?? '',
+                playerCount: game['Player-Count'] ?? '',
+                time: game['Game-Time'] ?? '',
+                maturity: game.Maturity ?? '',
+                brainload: game.Brainload ?? '',
+                link: game.Link ?? '',
+                image: game.Image ?? '',
+                rating: parseRating(game.Rating ?? game['Game-Rating'])
+            }));
+
+            createFilterControls();
+            filterAndSortGames();
+        }
+
+        // ---------- Controls ----------
+        function createFilterControls() {
+            filtersContainer.replaceChildren();
+
+            filterDefs.forEach(def => {
+                const values = [...new Set(games.map(g => g[def.field]).filter(Boolean))]
+                    .sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }));
+
+                // No point offering a filter with nothing to choose between
+                if (values.length < 2) return;
+
+                const id = `${def.key}-filter`;
+                const select = el('select', { id },
+                    el('option', { value: 'all', text: `All ${def.plural}` }),
+                    values.map(value => el('option', { value, text: value }))
+                );
+                select.addEventListener('change', () => {
+                    filterState[def.key] = select.value;
+                    filterAndSortGames();
+                });
+
+                filterSelects[def.key] = select;
+                filtersContainer.appendChild(
+                    el('div', { class: 'field field-filter', 'data-filter': def.key },
+                        el('label', { for: id, text: def.label }),
+                        select
+                    )
+                );
+            });
+        }
+
+        function resetControls() {
+            searchInput.value = '';
+            sortSelect.value = 'name-asc';
+            filterDefs.forEach(def => {
+                filterState[def.key] = 'all';
+                if (filterSelects[def.key]) filterSelects[def.key].value = 'all';
+            });
+            filterAndSortGames();
+        }
+
+        // ---------- Rendering ----------
+        function createCard(game) {
+            const initial = (game.title.trim()[0] || '?').toUpperCase();
+            const fallback = () => el('div', { class: 'media-fallback', 'aria-hidden': 'true', text: initial });
+
+            const media = el('div', { class: 'card-media' });
+            if (game.image) {
+                const img = el('img', { src: game.image, alt: '', loading: 'lazy' });
+                img.addEventListener('error', () => media.replaceChildren(fallback()), { once: true });
+                media.appendChild(img);
+            } else {
+                media.appendChild(fallback());
+            }
+
+            const title = game.link
+                ? el('a', { href: game.link, text: game.title })
+                : document.createTextNode(game.title);
+
+            const facts = el('div', { class: 'facts' },
+                game.playerCount ? el('span', {}, icon(ICON_PLAYERS), game.playerCount) : null,
+                game.time ? el('span', {}, icon(ICON_TIME), game.time) : null,
+                game.rating != null ? el('span', { title: `Rated ${formatRating(game.rating)}` }, icon(ICON_STAR), formatRating(game.rating)) : null
+            );
+
+            const tags = el('ul', { class: 'tags', 'aria-label': 'Game details' },
+                game.type ? el('li', { class: 'tag tag-type', text: game.type }) : null,
+                game.maturity ? el('li', { class: 'tag', text: game.maturity }) : null,
+                game.brainload ? el('li', { class: 'tag', text: game.brainload }) : null
+            );
+
+            const actions = el('div', { class: 'card-actions' },
+                game.link ? el('a', { class: 'btn btn-primary', href: game.link, 'aria-label': `Play ${game.title}`, text: 'Play' }) : null,
+                game.rules ? el('button', {
+                    type: 'button',
+                    class: 'btn',
+                    'aria-label': `View rules for ${game.title}`,
+                    text: 'Rules',
+                    onclick: () => openRules(game)
+                }) : null
+            );
+
+            return el('article', { class: 'card' },
+                media,
+                el('div', { class: 'card-body' },
+                    el('h2', { class: 'card-title' }, title),
+                    facts.children.length ? facts : null,
+                    tags.children.length ? tags : null,
+                    game.description ? el('p', { class: 'card-desc', text: game.description }) : el('div', { class: 'card-desc' }),
+                    actions.children.length ? actions : null
+                )
+            );
+        }
+
+        function displayGames(gamesToDisplay) {
+            if (gamesToDisplay.length === 0) {
+                showMessage('No games match', 'Try a different search term, or clear the filters to see every game.');
+                return;
+            }
+            gamesContainer.replaceChildren(...gamesToDisplay.map(createCard));
+        }
+
+        function updateSummary(shown) {
+            const total = games.length;
+            const noun = total === 1 ? 'game' : 'games';
+            headerCount.innerHTML = '';
+            headerCount.append(el('strong', { text: total }), ` ${noun}`);
+            resultCount.textContent = shown === total
+                ? `Showing all ${total} ${noun}`
+                : `Showing ${shown} of ${total} ${noun}`;
+
+            const hasActive = searchInput.value.trim() !== ''
+                || filterDefs.some(def => filterState[def.key] !== 'all');
+            clearButton.hidden = !hasActive;
+
+            filterDefs.forEach(def => {
+                const wrapper = filtersContainer.querySelector(`[data-filter="${def.key}"]`);
+                if (wrapper) wrapper.classList.toggle('is-active', filterState[def.key] !== 'all');
+            });
+        }
+
+        // ---------- Filter + sort ----------
+        function filterAndSortGames() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+
+            let filtered = games.filter(game =>
+                filterDefs.every(def => filterState[def.key] === 'all' || game[def.field] === filterState[def.key])
+            );
+
+            if (searchTerm) {
+                filtered = filtered.filter(game =>
+                    game.title.toLowerCase().includes(searchTerm) ||
+                    game.description.toLowerCase().includes(searchTerm) ||
+                    game.type.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            filtered.sort((a, b) => {
+                switch (sortSelect.value) {
+                    case 'name-desc':    return b.title.localeCompare(a.title);
+                    case 'players-asc':  return getMinPlayers(a.playerCount) - getMinPlayers(b.playerCount) || a.title.localeCompare(b.title);
+                    case 'players-desc': return getMinPlayers(b.playerCount) - getMinPlayers(a.playerCount) || a.title.localeCompare(b.title);
+                    case 'rating-desc':  return compareRating(a, b, -1) || a.title.localeCompare(b.title);
+                    case 'rating-asc':   return compareRating(a, b, 1) || a.title.localeCompare(b.title);
+                    case 'name-asc':
+                    default:             return a.title.localeCompare(b.title);
+                }
+            });
+
+            displayGames(filtered);
+            updateSummary(filtered.length);
+        }
+
+        // ---------- Rules dialog ----------
+        function openRules(game) {
+            modalTitle.textContent = `${game.title} rules`;
+            modalRules.textContent = game.rules;
+            modalRules.scrollTop = 0;
+            rulesModal.showModal();
+        }
+
+        modalClose.addEventListener('click', () => rulesModal.close());
+        rulesModal.addEventListener('click', event => {
+            // Clicks on the backdrop target the dialog element itself
+            if (event.target === rulesModal) rulesModal.close();
+        });
+
+        // ---------- Events ----------
+        searchInput.addEventListener('input', filterAndSortGames);
+        sortSelect.addEventListener('change', filterAndSortGames);
+        clearButton.addEventListener('click', resetControls);
+
+        // ---------- Init ----------
+        fetchGames();
+    </script>
 </body>
 </html>
