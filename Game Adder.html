@@ -651,6 +651,7 @@
             { key: 'time',        json: 'Game-Time',    label: 'Game time',   section: 'details', chips: true },
             { key: 'maturity',    json: 'Maturity',     label: 'Maturity',    section: 'details', chips: true },
             { key: 'brainload',   json: 'Brainload',    label: 'Complexity',  section: 'details', chips: true },
+            { key: 'rating',      json: 'Rating',       label: 'Rating (out of 10)', section: 'details', required: true, rating: true, placeholder: 'e.g. 7.5', hint: 'A number from 0 to 10. Half points are fine.' },
             { key: 'link',        json: 'Link',         label: 'Link',        section: 'links',   optional: true, placeholder: 'Path or URL to the game', hint: 'Adds a Play button and links the title.' },
             { key: 'image',       json: 'Image',        label: 'Image',       section: 'links',   optional: true, placeholder: 'Path or URL to a cover image', hint: 'Optional. Without one, the card shows the first letter of the name.' },
             { key: 'rules',       json: 'Rules',        label: 'Rules',       section: 'rules',   rows: 14, hint: 'Plain text. Line breaks are kept.' }
@@ -660,6 +661,26 @@
 
         const ICON_PLAYERS = '<circle cx="6" cy="5.5" r="2.5"/><path d="M1.5 13.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/><path d="M10.5 3.2a2.4 2.4 0 010 4.6M12 9.8c1.6.5 2.5 1.8 2.5 3.7"/>';
         const ICON_TIME = '<circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/>';
+        const ICON_STAR = '<path d="M8 1.8l1.9 4 4.3.5-3.2 3 .9 4.3L8 11.4l-3.9 2.2.9-4.3-3.2-3 4.3-.5z"/>';
+
+        // "8", 8, 7.5 or "8/10" -> number, or null if blank/invalid
+        function parseRating(value) {
+            const s = String(value ?? '').trim().replace(/\s*\/\s*10$/, '');
+            if (s === '') return null;
+            const n = Number(s);
+            return Number.isFinite(n) ? n : null;
+        }
+
+        function formatRating(n) {
+            return `${Number.isInteger(n) ? n : n.toFixed(1)}/10`;
+        }
+
+        // Returns an error message, or '' if the rating is fine
+        function ratingProblem(text) {
+            if (!String(text).trim()) return 'Add a rating out of 10.';
+            const n = parseRating(text);
+            return n == null || n < 0 || n > 10 ? 'Use a number from 0 to 10.' : '';
+        }
 
         // ---------- State ----------
         const state = {
@@ -764,7 +785,13 @@
             const values = blankValues();
             const extra = {};
             for (const f of FIELDS) {
-                if (raw[f.json] != null) values[f.key] = String(raw[f.json]);
+                if (raw[f.json] == null) continue;
+                if (f.rating) {
+                    const n = parseRating(raw[f.json]);
+                    values[f.key] = n == null ? String(raw[f.json]) : String(n);  // "8/10" becomes "8"
+                } else {
+                    values[f.key] = String(raw[f.json]);
+                }
             }
             for (const [k, v] of Object.entries(raw)) {
                 if (!KNOWN_JSON_KEYS.has(k)) extra[k] = v; // keep fields this editor doesn't know about
@@ -776,6 +803,11 @@
             const out = {};
             for (const f of FIELDS) {
                 const v = game.values[f.key].replace(/\r\n/g, '\n').trim();
+                if (f.rating) {
+                    const n = parseRating(v);
+                    if (n != null) out[f.json] = n;   // saved as a number, e.g. 8 or 7.5
+                    continue;
+                }
                 if (f.optional && !v) continue;
                 out[f.json] = v;
             }
@@ -865,6 +897,12 @@
             if (unnamed.length) {
                 selectGame(unnamed[0].id, { view: 'edit', focus: 'name' });
                 toast(unnamed.length === 1 ? 'Give this game a name before saving.' : `${unnamed.length} games need a name before saving.`, { tone: 'error' });
+                return null;
+            }
+            const badRating = state.games.filter(g => ratingProblem(g.values.rating));
+            if (badRating.length) {
+                selectGame(badRating[0].id, { view: 'edit', focus: 'rating' });
+                toast(badRating.length === 1 ? 'Give this game a rating out of 10 before saving.' : `${badRating.length} games need a rating out of 10 before saving.`, { tone: 'error' });
                 return null;
             }
             return serialise();
@@ -1036,7 +1074,11 @@
 
             listEl.replaceChildren(...items.map(game => {
                 const name = game.values.name.trim();
-                const problem = !name ? 'Needs a name' : counts.get(name.toLowerCase()) > 1 ? 'Another game has the same name' : '';
+                const problem = !name ? 'Needs a name'
+                    : counts.get(name.toLowerCase()) > 1 ? 'Another game has the same name'
+                    : ratingProblem(game.values.rating) ? 'Needs a rating out of 10'
+                    : '';
+                const rating = parseRating(game.values.rating);
                 return el('li', {},
                     el('button', {
                         type: 'button',
@@ -1050,7 +1092,8 @@
                         ),
                         el('span', { class: 'game-item-meta' },
                             game.values.type ? el('span', { text: game.values.type }) : null,
-                            game.values.players ? el('span', { text: game.values.players }) : null
+                            game.values.players ? el('span', { text: game.values.players }) : null,
+                            rating != null ? el('span', { text: `★ ${formatRating(rating)}` }) : null
                         )
                     )
                 );
@@ -1074,7 +1117,7 @@
             const common = { id, 'data-key': f.key, placeholder: f.placeholder || '' };
             const input = f.rows
                 ? el('textarea', { ...common, rows: f.rows, 'aria-describedby': f.hint ? `hint-${f.key}` : null })
-                : el('input', { ...common, type: 'text', spellcheck: f.optional ? 'false' : null, autocapitalize: f.optional ? 'off' : null });
+                : el('input', { ...common, type: 'text', inputmode: f.rating ? 'decimal' : null, spellcheck: f.optional ? 'false' : null, autocapitalize: f.optional ? 'off' : null });
             inputs[f.key] = input;
 
             return el('div', { class: 'field', 'data-field': f.key },
@@ -1090,6 +1133,7 @@
             FIELDS.forEach(f => { inputs[f.key].value = game.values[f.key]; });
             FIELDS.filter(f => f.chips).forEach(f => renderChips(f.key));
             updateNameMessage(game);
+            updateRatingMessage(game);
             editorTitle.textContent = game.values.name.trim() || 'New game';
             previewKey = null;
             renderPreview(game);
@@ -1133,6 +1177,16 @@
             else { msg.hidden = true; }
         }
 
+        function updateRatingMessage(game) {
+            const msg = $('msg-rating');
+            const text = game.values.rating;
+            const problem = ratingProblem(text);
+            msg.textContent = problem;
+            msg.dataset.tone = 'error';
+            msg.hidden = !problem;
+            inputs.rating.setAttribute('aria-invalid', String(!!problem && !!text.trim()));
+        }
+
         form.addEventListener('input', event => {
             const key = event.target.dataset && event.target.dataset.key;
             const game = selectedGame();
@@ -1143,6 +1197,7 @@
             if (key === 'name') editorTitle.textContent = game.values.name.trim() || 'New game';
             if (FIELDS.find(f => f.key === key).chips) renderChips(key);
             updateNameMessage(game);
+            updateRatingMessage(game);
             renderPreview(game);
             renderList();
         });
@@ -1174,9 +1229,11 @@
                 }
             }
 
+            const rating = parseRating(v.rating);
             const facts = el('div', { class: 'facts' },
                 v.players.trim() ? el('span', {}, svgIcon(ICON_PLAYERS), v.players.trim()) : null,
-                v.time.trim() ? el('span', {}, svgIcon(ICON_TIME), v.time.trim()) : null
+                v.time.trim() ? el('span', {}, svgIcon(ICON_TIME), v.time.trim()) : null,
+                rating != null && rating >= 0 && rating <= 10 ? el('span', {}, svgIcon(ICON_STAR), formatRating(rating)) : null
             );
             const tags = el('ul', { class: 'tags' },
                 v.type.trim() ? el('li', { class: 'tag tag-type', text: v.type.trim() }) : null,

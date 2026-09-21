@@ -8,6 +8,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Extra Mature",
                               "Brainload": "Low Brainload",
+                              "Rating": 6.5,
                               "Link": "https://kay-who-codes.github.io/Truth-Dare-or-Drink/",
                               "Image": "https://github.com/kay-who-codes/Truth-Dare-or-Drink/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players take turns nominatig themselves to either (a) tell a personal truth, or (b), perform a dare. If they refuse to do either, they must take a drink."
@@ -20,6 +21,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Extra Mature",
                               "Brainload": "Low Brainload",
+                              "Rating": 9,
                               "Link": "https://kay-who-codes.github.io/Cards-Against-Humanity/",
                               "Image": "https://github.com/kay-who-codes/Cards-Against-Humanity/blob/main/Non-Game%20Files/App%20Image.png?raw=true",
                               "Rules": "One player reads a prompt card, and the other players submit their funniest response cards. The reader chooses the best one.",
@@ -33,6 +35,7 @@
                               "Game-Time": "5-20 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/70-Second-Scrawls/",
                               "Image": "https://github.com/kay-who-codes/70-Second-Scrawls/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players take turns drawing prompt cards from a deck, and have 70 seconds to draw all 10 prompts. The other players guess what the drawings are. The player with the most correct guesses wins."
@@ -45,6 +48,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Extra Mature",
                               "Brainload": "Low Brainload",
+                              "Rating": 9,
                               "Link": "https://kay-who-codes.github.io/Ultimate-Drinking-Cards/",
                               "Image": "https://github.com/kay-who-codes/Ultimate-Drinking-Cards/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players take turns drawing cards from a deck. Each card has a different instruction, such as taking a drink, giving a drink, or performing a dare. The game continues until players decide to stop."
@@ -57,6 +61,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Extra Mature",
                               "Brainload": "Low Brainload",
+                              "Rating": 8,
                               "Link": "https://kay-who-codes.github.io/Ultimate-Smoking-Cards/",
                               "Image": "https://github.com/kay-who-codes/Ultimate-Smoking-Cards/blob/main/Assets/App%20Image.png?raw=true",
                               "Rules": "Players take turns drawing cards from a deck. Each card has a different instruction, such as taking a smoke, giving a smoke, or performing a dare. The game continues until players decide to stop."
@@ -69,6 +74,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Extra Mature",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/Laughing-Hazard/",
                               "Image": "https://fillerplace.cl/wp-content/uploads/2024/03/joking-hazard-01.png",
                               "Rules": "Players take turns being the judge and drawing cards to create a comic strip. The judge chooses the funniest combination, and the player with the most points wins."
@@ -81,6 +87,7 @@
                               "Game-Time": "5-20 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/Wordshake/",
                               "Image": "https://github.com/kay-who-codes/Wordshake/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players shake a grid of lettered dice and then have 3 minutes to find as many words as possible by connecting adjacent letters. Words must be at least 3 letters long."
@@ -93,6 +100,7 @@
                               "Game-Time": "5-20 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7.5,
                               "Link": "https://kay-who-codes.github.io/Wordsmash/",
                               "Image": "https://github.com/kay-who-codes/Wordsmash/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players take turns drawing cards and must come up with a word that matches the criteria, and starts with the two letters on the card. The first player to say a word wins the round."
@@ -105,6 +113,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Mild Maturity",
                               "Brainload": "High Brainload",
+                              "Rating": 5,
                               "Link": "https://kay-who-codes.github.io/Spot-The-Rule/",
                               "Image": "https://github.com/kay-who-codes/Spot-The-Rule/blob/main/AppIMG.png?raw=true",
                               "Rules": "1-Player Mode: The game generates a sequence using a random mathematical rule. Submit any formula (e.g., `(x * 2) + 1`) that correctly produces the sequence—it doesn't need to match the exact original expression.\n\n2-Player Mode: Player 1 sets a custom rule and starting number. Player 2 sees the generated sequence and must find a working formula (not necessarily identical to Player 1's). Correct solutions win!"
@@ -117,6 +126,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 6.5,
                               "Link": "https://kay-who-codes.github.io/3-Criteria-Challenge/",
                               "Image": "https://github.com/kay-who-codes/3-Criteria-Challenge/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players compete to be the first to guess a word that fits the criteria. The first player to guess correctly wins the round."
@@ -129,6 +139,7 @@
                               "Game-Time": "20-40 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 5,
                               "Link": "https://kay-who-codes.github.io/UK-Driving-Theory-Test/",
                               "Image": "https://github.com/kay-who-codes/UK-Driving-Theory-Test/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players answer multiple-choice questions based on the UK Highway Code and driving theory. The game tracks correct answers and provides feedback."
@@ -141,6 +152,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 8,
                               "Link": "https://kay-who-codes.github.io/Dope-Inventions/",
                               "Image": "https://github.com/kay-who-codes/Dope-Inventions/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Combine product cards together to create dope new inventions and pitch those inventions to buyers (a. K. A the judge). The dopest invention wins!"
@@ -153,6 +165,7 @@
                               "Game-Time": "10-30 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Low Brainload",
+                              "Rating": 0,
                               "Link": "https://kay-who-codes.github.io/20-Questions/",
                               "Image": "https://github.com/kay-who-codes/20-Questions-Counter/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "One player thinks of an object, and the other players take turns asking yes or no questions. The goal is to guess the object within 20 questions."
@@ -165,6 +178,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7.7,
                               "Link": "https://kay-who-codes.github.io/QuipMaster/",
                               "Image": "https://github.com/kay-who-codes/QuipMaster/blob/main/Non-App/App%20Image.png?raw=true",
                               "Rules": "Players take turns filling in the blanks of prompts with funny responses. The other players vote on their favorite responses, and points are awarded based on the votes received."
@@ -177,6 +191,7 @@
                               "Game-Time": "5-15 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 3,
                               "Link": "https://kay-who-codes.github.io/Solitaire/",
                               "Image": "https://github.com/kay-who-codes/Solitaire/blob/main/Solitaire.png?raw=true",
                               "Rules": "Move all cards to the four foundation piles, building up in suit from Ace to King. Draw cards from the stock and build tableau columns in descending order with alternating colors."
@@ -189,6 +204,7 @@
                               "Game-Time": "5-20 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "High Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Peg-Solitaire/",
                               "Image": "https://github.com/kay-who-codes/Peg-Solitaire/blob/main/Peg%20Solitaire.png?raw=true",
                               "Rules": "Jump pegs over adjacent pegs into empty holes, removing the jumped peg. The game is solved when only one peg remains in the center."
@@ -201,6 +217,7 @@
                               "Game-Time": "5-10 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Low Brainload",
+                              "Rating": 4,
                               "Link": "https://kay-who-codes.github.io/Pong/",
                               "Image": "https://github.com/kay-who-codes/Pong/blob/main/Pong.png?raw=true",
                               "Rules": "Use your paddle to hit the ball past your opponent's paddle. Score points when your opponent misses the ball. First to reach the score limit wins."
@@ -213,6 +230,7 @@
                               "Game-Time": "10-20 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Noun-Guesser/",
                               "Image": "https://github.com/kay-who-codes/Noun-Guesser/blob/main/Noun%20Guesser.png?raw=true",
                               "Rules": "One player thinks of a noun while other players ask yes/no questions to deduce the secret word. Players have up to 20 questions to guess correctly."
@@ -225,6 +243,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/PromptSay/",
                               "Image": "https://github.com/kay-who-codes/PromptSay/blob/main/PromptSay.png?raw=true",
                               "Rules": "A random word and scenario are shown to all players. Each player creates and shares a funny scenario incorporating the word. Players vote on their favorite response."
@@ -237,6 +256,7 @@
                               "Game-Time": "20-40 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 8.5,
                               "Link": "https://kay-who-codes.github.io/Sketch-Seek/",
                               "Image": "https://github.com/kay-who-codes/Sketch-Seek/blob/main/Sketch%20&%20Seek.png?raw=true",
                               "Rules": "Players draw sketches based on prompts, then other players guess the prompts from the drawings. The next player draws the guessed prompt, creating a chain of interpretation."
@@ -249,6 +269,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "High Brainload",
+                              "Rating": 5,
                               "Link": "https://kay-who-codes.github.io/Guess-the-Persona/",
                               "Image": "https://github.com/kay-who-codes/Guess-the-Persona/blob/main/Guess%20the%20Persona.png?raw=true",
                               "Rules": "Players receive randomly generated personas with hidden traits. Through questioning and deduction, players try to identify the persona's role and secret."
@@ -261,6 +282,7 @@
                               "Game-Time": "10-25 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/Acronymania/",
                               "Image": "https://github.com/kay-who-codes/Acronymania/blob/main/Acronymania.png?raw=true",
                               "Rules": "Players receive random letters and must create funny or creative phrases where each word starts with one of the assigned letters. Players vote on the best acronym."
@@ -273,6 +295,7 @@
                               "Game-Time": "5-15 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Morpheme-Game/",
                               "Image": "https://github.com/kay-who-codes/Morpheme-Game/blob/main/Game%20Image.png?raw=true",
                               "Rules": "Players draw one starter card and five player cards, then combine any of them to form real or invented words. The group may judge results for creativity or plausibility."
@@ -285,6 +308,7 @@
                               "Game-Time": "5-15 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/Quiktionary/",
                               "Image": "https://github.com/kay-who-codes/Quiktionary/blob/987df189e25828ab1c1874495877c2f6ccdcae80/App%20Image%20(2).png?raw=true",
                               "Rules": "XXX"
@@ -297,6 +321,7 @@
                               "Game-Time": "5-15 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 5,
                               "Link": "https://kay-who-codes.github.io/Quiktionary/",
                               "Image": "https://github.com/kay-who-codes/StoryMake-Game/blob/f3453d6a8d83e234f371cd8f64024d7b0ced9105/App%20Image.png?raw=true",
                               "Rules": "Players draw one starter card and five player cards, then combine any of them to form real or invented words. The group may judge results for creativity or plausibility."
@@ -309,6 +334,7 @@
                               "Game-Time": "10-20 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Low Brainload",
+                              "Rating": 5,
                               "Link": "https://kay-who-codes.github.io/Kingfall/",
                               "Image": "https://github.com/kay-who-codes/Kingfall/blob/main/Kingfall.png?raw=true",
                               "Rules": "Players take turns drawing and playing cards with special actions. The goal is to avoid being the last player holding a King card when no cards remain in the deck."
@@ -321,6 +347,7 @@
                               "Game-Time": "5-30 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "High Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Sudoku/",
                               "Image": "https://github.com/kay-who-codes/Sudoku/blob/main/Sudoku.png?raw=true",
                               "Rules": "Fill the 9x9 grid so that each row, column, and 3x3 box contains all digits from 1 to 9 without repetition. Start with some numbers pre-filled as clues."
@@ -333,6 +360,7 @@
                               "Game-Time": "10-30 Minutes",
                               "Maturity": "Flexible Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 4,
                               "Link": "https://kay-who-codes.github.io/Debatable/",
                               "Image": "https://github.com/kay-who-codes/Debatable/blob/main/Debatable.png?raw=true",
                               "Rules": "Choose an item to argue for each debate topic. Other players may attempt to out-debate you to score the point. First player with 0 cards remaining wins."
@@ -345,6 +373,7 @@
                               "Game-Time": "5-10 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/Nonogram/",
                               "Image": "https://github.com/kay-who-codes/Nonogram/blob/main/Non-App%20Files/App%20Image.png?raw=true",
                               "Rules": ""
@@ -357,6 +386,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Flexible Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7.5,
                               "Link": "https://kay-who-codes.github.io/Dinny-Git-Goat/",
                               "Image": "https://raw.githubusercontent.com/kay-who-codes/Dinny-Git-Goat/refs/heads/main/Non-Game%20Files/App%20Image.png",
                               "Rules": "Be the first player to complete your secret missions!"
@@ -369,6 +399,7 @@
                               "Game-Time": "5-20 Minutes",
                               "Maturity": "Flexible Maturity",
                               "Brainload": "Medium Brainload",
+                              "Rating": 7,
                               "Link": "https://kay-who-codes.github.io/WRDGuess/",
                               "Image": "https://github.com/kay-who-codes/WRDGuess/raw/main/Non-App%20Files/App%20Image.png",
                               "Rules": "Guess your opponents secret word first!"
@@ -381,6 +412,7 @@
                               "Game-Time": "15-30 Minutes",
                               "Maturity": "Mild Maturity",
                               "Brainload": "Low Brainload",
+                              "Rating": 6.5,
                               "Link": "https://kay-who-codes.github.io/Drunk-Dice/",
                               "Image": "https://github.com/kay-who-codes/Drunk-Dice/raw/main/Non-App%20Files/App%20Image.png",
                               "Rules": "Roll the dice, perform the action."
@@ -393,6 +425,7 @@
                               "Game-Time": "10-30 Minutes",
                               "Maturity": "Family Friendly",
                               "Brainload": "Medium Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Quorridor/",
                               "Image": "https://github.com/kay-who-codes/Quorridor/raw/main/Non-App%20Files/App%20Image.png",
                               "Rules": "Reach the opposite side to win.\n\nClick your pawn's highlighted squares to move.\n\nSwitch to Wall mode to place barriers — walls span 2 cells.\n\nWalls cannot completely block a player from reaching their goal.\n\nPlayers may jump over each other when adjacent."
@@ -405,6 +438,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Flexible Maturity",
                               "Brainload": "Low Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Sloshed/",
                               "Image": "https://github.com/kay-who-codes/Sloshed/raw/main/Non-App/App%20Image.png",
                               "Rules": "Enter player names and get personalised prompts with random player selection."
@@ -417,6 +451,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Flexible Maturity",
                               "Brainload": "Low Brainload",
+                              "Rating": 6,
                               "Link": "https://kay-who-codes.github.io/Kast-Snusboksen/",
                               "Image": "https://github.com/kay-who-codes/Kast-Snusboksen/raw/main/Non-App%20Files/App%20Image.png",
                               "Rules": "How to play:\n1. Everyone sits in a circle.\n2. Read the question out loud.\n3. Throw the snus tin to the person who fits the statement best.\n4. The person who receives the tin throws it to start the next round.\nBad catch: Can't catch a good throw? Drink three sips! 🍺\nCheers: Every 10th question – everyone drinks together! 🥂"
@@ -429,6 +464,7 @@
                               "Game-Time": "Flexible",
                               "Maturity": "Extra Mature",
                               "Brainload": "Low Brainload",
+                              "Rating": 6.5,
                               "Link": "https://kay-who-codes.github.io/Truth-or-Drink/",
                               "Image": "https://github.com/kay-who-codes/Truth-or-Drink/raw/main/Non-App%20Files/App%20Image.png",
                               "Rules": "Tell the truth, or DRINK!"
