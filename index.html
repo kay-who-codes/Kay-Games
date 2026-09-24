@@ -558,7 +558,7 @@
                     <select id="sort-by">
                         <option value="name-asc">Name (A to Z)</option>
                         <option value="name-desc">Name (Z to A)</option>
-                        <option value="rating-desc">Rating (highest first)</option>
+                        <option value="rating-desc" selected>Rating (highest first)</option>
                         <option value="rating-asc">Rating (lowest first)</option>
                         <option value="players-asc">Players (fewest first)</option>
                         <option value="players-desc">Players (most first)</option>
@@ -749,7 +749,7 @@ function compareRating(a, b, direction) {
 
         function resetControls() {
             searchInput.value = '';
-            sortSelect.value = 'name-asc';
+            sortSelect.value = 'rating-desc';
             filterDefs.forEach(def => {
                 filterState[def.key] = 'all';
                 if (filterSelects[def.key]) filterSelects[def.key].value = 'all';
